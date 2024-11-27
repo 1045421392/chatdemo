@@ -1,0 +1,1455 @@
+.chat {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.box-center {
+  display: flex;
+  float: left;
+  width: 50%;
+  justify-content: center;
+}
+
+.header {
+  height: 60px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  border-bottom: 1px solid #f0f0f0;
+  justify-content: space-between;
+}
+.last-message{
+    text-align: left;
+}
+.header .left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header .left button {
+  padding: 0 14px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  background-color: transparent;
+}
+
+.header .title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+  text-align: left;
+}
+
+.header .right {
+  display: flex;
+  align-items: center;
+}
+
+.conversation-box .bottom {
+  padding: 15px;
+  background: #fff;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 1;
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+
+.conversation-box .bottom button {
+  width: 50%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  background-color: #fff;
+  color: #f56c6c;
+  border: 1px solid #f56c6c;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.conversation-box .bottom button i {
+  font-size: 16px;
+}
+
+.conversation-box .bottom button span {
+  opacity: 1;
+  transform: translateX(0);
+  white-space: nowrap;
+  position: relative;
+}
+
+.conversation-box.collapsed .bottom {
+  opacity: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+
+.conversation-box.collapsed .bottom button span {
+  opacity: 0;
+  transform: translateX(-20px);
+  width: 0;
+  margin: 0;
+  position: absolute;
+}
+
+.conversation-box.collapsed .bottom button i {
+  margin: 0;
+}
+
+.conversation-box .bottom button:hover {
+  background-color: #f56c6c;
+  color: #fff;
+}
+
+.logout-icon {
+  display: none;
+}
+
+.content {
+  background-color: #FDFDFD;
+  position: relative;
+  display: flex;
+  height: 100vh;
+}
+
+.message {
+  display: flex;
+  position: relative;
+  margin: 15px 10px 10px;
+  align-items: flex-start;
+}
+
+.message.left {
+  margin-top: 25px;
+}
+
+.message .sender-name {
+  position: absolute;
+  top: -18px;
+  left: 52px;
+  font-size: 12px;
+  color: #bdbbbb;
+  text-align: left;
+}
+
+.message.right {
+  justify-content: flex-end;
+}
+
+.message .bubble {
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px 10px 10px 10px;
+  padding: 10px;
+  border: 1px solid #F1F1F1;
+  box-shadow: 0px 0px 5px #F1F1F1;
+  background-color: #ffffff;
+  color: #333;
+  margin: 0 10px ;
+}
+
+.bubble.right {
+  border-radius: 10px 10px 10px 10px;
+}
+
+.message .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: white;
+}
+
+.message .status {
+  font-size: 12px;
+  color: rgb(228, 98, 64);
+  margin-left: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.message .bubble .text {
+  text-align: left;
+  font-size: 14px;
+  max-width: 500px;
+  word-break: break-all;
+}
+
+.footer {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #f0f0f0;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  gap: 10px;
+  padding: 10px 15px;
+}
+
+.message-input {
+  flex: 1;
+  min-height: 40px;
+  max-height: 120px;
+  margin-bottom: 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  outline: none;
+  font-size: 14px;
+  padding: 8px 12px;
+  background: #fff;
+  resize: none;
+  overflow-y: auto;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  transition: all 0.2s ease;
+
+}
+
+.message-input:focus {
+  border-color: #4A90E2;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  align-self: flex-end;
+  margin-bottom: 2px;
+}
+
+.action-btn {
+  min-width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #fff;
+  color: #666;
+}
+
+.action-btn:not(.send-btn) {
+  border: 1px solid #e0e0e0;
+}
+
+.action-btn i {
+  font-size: 14px;
+}
+
+.action-btn:hover {
+  background: #f5f5f5;
+}
+
+.action-btn.send-btn {
+  background: #000;
+  padding: 0 18px;
+  gap: 4px;
+  color: #fff;
+  font-size: 13px;
+}
+
+.action-btn.send-btn i {
+  font-size: 12px;
+  color: #fff;
+  margin-right: 5px;
+}
+
+.action-btn.send-btn span {
+  color: #fff;
+}
+
+/* 确保上传按钮样式正确 */
+.upload-demo {
+  display: inline-block;
+}
+
+.upload-demo .el-upload {
+  display: block;
+}
+
+.upload-demo .action-btn {
+  border: 1px solid #e0e0e0;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+/* 移除点击时的凸显边框 */
+.upload-demo .action-btn:focus,
+.upload-demo .action-btn:active {
+  outline: none;
+  box-shadow: none;
+}
+
+/* hover 效果 - 只变背景色 */
+.upload-demo .action-btn:hover {
+  background-color: #f5f5f5;
+}
+
+
+
+.setting {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.setting .setting-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 700px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 4px;
+  z-index: 10001;
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.switch .item {
+  margin-left: 20px;
+  font-size: 14px;
+}
+
+.to {
+  border: none;
+  width: 100%;
+  height: 40px;
+  margin-top: 20px;
+  box-sizing: border-box;
+}
+
+.ok {
+  width: 40%;
+  height: 40px;
+  margin-top: 10px;
+  border: none;
+  outline: none;
+  background-color: rgb(228, 98, 64);
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.message-stream {
+  width: 120px !important;
+  height: 40px;
+}
+
+.message-box {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-list {
+  width: 100%;
+  height: calc(100vh - 130px);
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-color: rgb(243, 244, 246);
+}
+
+.message-list::-webkit-scrollbar {
+  display: none;
+}
+
+.conversation-box {
+  position: relative;
+  width: 390px;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-x: hidden;
+  border-right: 1px solid rgb(243, 244, 246);
+}
+
+.conversation-box.collapsed {
+  width: 75px;
+}
+
+.collapse-btn {
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  width: 24px;
+  height: 24px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.collapse-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.collapse-icon.rotated {
+  transform: rotate(180deg);
+}
+
+.conversation-box .outlogin {
+  padding: 0 10px;
+  transition: all 0.3s ease;
+}
+
+.conversation-box.collapsed .outlogin {
+  padding: 0 5px;
+}
+
+.logout-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.pop_box {
+  z-index: 99991;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+}
+
+.answer_popup__content {
+  z-index: 99992;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 980px;
+  max-height: 90vh;
+  overflow: auto;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.answer {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin: auto;  border-radius: 10px;
+  background-color: white;
+  scrollbar-width: none;
+  max-height: 90vh;
+  max-width: 980px;
+  overflow: auto;
+  text-align: left;
+  padding: 10px;
+  word-break: break-all;
+  color: #333;
+}
+
+.setting-content textarea {
+  min-height: 300px;
+}
+
+.t-red {
+  color: red;
+}
+
+.bagright {
+  background-color: #4A90E2;
+  color: #fff;
+}
+
+.bagright a {
+  color: white;
+}
+
+a {
+  color: #4A90E2;
+}
+
+input {
+  border: 1px solid #eee;
+  background: #fff;
+  border-radius: 5px;
+  text-indent: 5px;
+}
+
+.bottom {
+  background: #F4F5F7;
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+
+.outlogin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.conversations {
+  width: 100%;
+  height: calc(100% - 70px);
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.conversations::-webkit-scrollbar {
+  display: none;
+}
+
+.imagebutton {
+  width: 30px;
+  height: 30px;
+  margin: 0 10px;
+}
+
+.imageback {
+  width: 30px;
+  height: 30px;
+  margin: 0 10px;
+}
+
+.avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+@media screen and (max-width:640px) {
+  .conversation-box {
+    position: relative;
+    width: 280px;
+    height: 100%;
+    background: #fff;
+    transition: all 0.3s ease;
+  }
+  
+  .conversation-box.collapsed {
+    width: 64px;
+  }
+
+  .imageback {
+    display: none;
+  }
+
+  .collapse-btn {
+    display: flex;
+  }
+
+  .conversation-box .bottom {
+    padding: 15px;
+  }
+
+  .conversation-box.collapsed .bottom {
+    padding: 15px 5px;
+  }
+
+  .conversation-box .bottom button {
+    height: 40px;
+  }
+
+
+}
+
+up-status-bar {
+  height: constant(safe-area-inset-top);
+  min-height: env(safe-area-inset-top);
+  display: block;
+}
+
+.header {
+  margin-top: constant(safe-area-inset-top);
+  margin-top: env(safe-area-inset-top);
+}
+
+/* 修 menu-btn 相关样式 */
+.header .menu-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.header .menu-btn:active {
+  background-color: #f5f5f5;
+}
+
+.header .menu-btn:hover {
+  background-color: #f9f9f9;
+}
+
+.header .menu-btn i {
+  font-size: 20px;
+  color: #666;
+}
+
+/* 确保没有任何边框出现 */
+.header .menu-btn:focus {
+  outline: none;
+  border: none;
+}
+
+/* 退出登录按钮样式 */
+.header .logout-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+}
+
+.header .logout-btn i {
+  font-size: 18px;
+  color: #666;
+}
+
+.header .logout-btn:hover {
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+
+/* 删除不需要的样式 */
+.header .center {
+  display: none;
+}
+
+@media screen and (max-width:640px) {
+  .header .menu-btn {
+    display: flex;
+  }
+
+  .conversation-box {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 280px;
+    height: 100vh;
+    background: #fff;
+    z-index: 1000;
+  }
+
+  /* 移除重复的动画和变换样式，让 conversations 类来控制 */
+  .mobile-mask {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 280px;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+  }
+
+  .mobile-mask.show {
+    display: block;
+  }
+
+}
+
+/* 添加遮罩层样式 */
+.mobile-mask {
+  display: none;
+}
+
+@media screen and (max-width:640px) {
+  .mobile-mask {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+  }
+
+  .conversation-box {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 320px;
+    height: 100vh;
+    z-index: 1000;
+    background: #fff;
+    transform: translateX(-280px);
+    transition: transform 0.3s ease;
+  }
+
+  .conversation-box:not(.collapsed) {
+    transform: translateX(0);
+  }
+
+
+}
+
+/* 修改图片消息的样式 */
+.message .bubble img {
+  max-width: 300px; /* 设置最大宽度为300px */
+  max-height: 400px; /* 设置最大高度为400px */
+  width: auto; /* 保持图片比例 */
+  height: auto; /* 保持图片比例 */
+  border-radius: 8px;
+  display: block;
+  margin: 0;
+  object-fit: contain; /* 确保图片完整显示 */
+}
+
+/* 包含图片的气泡样式 */
+.message .bubble:has(img) {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* 右侧(发送方)的图片消息样式 */
+.message.right .bubble:has(img) {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 640px) {
+  .message .bubble img {
+    max-width: 320px; /* 移动端下设置较小的最大宽度 */
+    max-height: 320px; /* 移动端下设置较小的最大高度 */
+  }
+}
+.image-preview {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.65);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 9999;
+	cursor: zoom-out;
+}
+
+.image-preview img {
+	max-width: 90vw;
+	max-height: 90vh;
+	object-fit: contain;
+	cursor: default;
+}
+
+/* 添加动画效果 */
+.image-preview {
+	animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+/* 添加退出确认弹窗样式 */
+.logout-confirm {
+  max-width: 300px !important;
+  padding: 20px !important;
+  text-align: center;
+  z-index: 10001;
+}
+
+.logout-confirm h3 {
+  margin: 0 0 15px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.logout-confirm p {
+  margin: 0 0 20px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.logout-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.logout-buttons button {
+  padding: 8px 20px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.logout-buttons .cancel-btn {
+  background: #f5f5f5;
+  color: #666;
+  width: 50%;
+  height: 38px;  /* 固定高度 */
+
+
+}
+
+.logout-buttons .confirm-btn {
+  background: #f56c6c;
+  color: white;
+  width: 50%;
+  height: 38px;  /* 固定高度 */
+
+}
+
+.logout-buttons .cancel-btn:hover {
+  background: #e8e8e8;
+}
+
+.logout-buttons .confirm-btn:hover {
+  background: #f78989;
+}
+
+
+
+
+
+/* 移动端适配 */
+@media screen and (max-width: 640px) {
+  .answer_popup__content {
+    width: 95%;
+    max-height: 80vh;
+  }
+}
+
+/* 右侧消息气泡样式 - 恢复蓝色背景 */
+.bubble.right.bagright {
+  background-color: #4A90E2;
+  color: #fff;
+  border: none;  /* 移除白色边框 */
+  box-shadow: none;  /* 移除白色阴影 */
+}
+
+/* 确保这些样式不会被其他样式覆盖 */
+.chat-container .logout-btn,
+.header .logout-btn {
+  padding: 8px 16px;
+  background: #fff;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  color: #606266;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.chat-container .logout-btn:hover,
+.header .logout-btn:hover {
+  color: #409eff;
+  border-color: #c6e2ff;
+  background-color: #ecf5ff;
+}
+
+/* 添加人工客服消息样式 */
+.customer-service-msg {
+  color: #1890ff;
+  cursor: pointer;
+}
+
+.customer-service-msg:hover {
+  text-decoration: underline;
+}
+
+/* 添加消息名称样式 */
+.message .name {
+    font-size: 12px;
+    color: #b6b2b2;
+    text-align: left;
+}
+
+.message-content {
+    margin: 0 10px;
+}
+
+
+/* 只为左侧消息的头像添加上移 */
+.message.left .avatar {
+  margin-top: -5px;
+}
+.bagright .customer-service-msg{
+  color: #fff;
+}
+
+/* 添加修改名称弹窗的样式 */
+.edit-name-dialog {
+    width: 320px;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.edit-name-dialog h3 {
+    margin: 0 0 20px 0;
+    text-align: center;
+    color: #333;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.edit-name-dialog .input-group {
+    margin-bottom: 25px;
+}
+
+.edit-name-dialog input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+
+.edit-name-dialog input:focus {
+    border-color: #409eff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+}
+
+.edit-name-dialog .button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.edit-name-dialog button {
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.edit-name-dialog .cancel-btn {
+    background-color: #f5f5f5;
+    color: #606266;
+    border: 1px solid #dcdfe6;
+}
+
+.edit-name-dialog .confirm-btn {
+    background-color: #409eff;
+    color: white;
+}
+
+.edit-name-dialog .cancel-btn:hover {
+    background-color: #f9f9f9;
+    border-color: #c6e2ff;
+    color: #409eff;
+}
+
+.edit-name-dialog .confirm-btn:hover {
+    background-color: #66b1ff;
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 640px) {
+    .edit-name-dialog {
+        width: 90%;
+        max-width: 320px;
+    }
+}
+
+/* 让标题显示可点击 */
+.title {
+    cursor: pointer;
+}
+
+.title:hover {
+    opacity: 0.8;
+}
+
+/* 优化修改个人信息弹窗样式 */
+.edit-profile-dialog {
+    width: 400px;
+    padding: 25px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.edit-profile-dialog h3 {
+    margin: 0 0 10px 0;
+    text-align: center;
+    color: #333;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.edit-profile-dialog .input-group {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.edit-profile-dialog .input-group label {
+    flex-shrink: 0;
+    width: 45px;  /* 固定标签宽度 */
+    color: #606266;
+    font-size: 14px;
+    text-align: right;  /* 标签右对齐 */
+}
+
+.edit-profile-dialog .input-group input {
+    flex: 1;  /* 输入框占据剩余空间 */
+    height: 40px;  /* 减小输入框高度 */
+    padding: 0 12px;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+
+/* 头像选择区域 */
+.avatar-selector {
+    margin-bottom: 20px;
+}
+
+.avatar-selector .current-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.avatar-selector .current-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.avatar-option {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    overflow: hidden;
+    margin: auto;
+}
+
+.avatar-option img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar-option:hover {
+    transform: scale(1.05);
+}
+
+.avatar-option.selected {
+    border-color: #409eff;
+}
+
+/* 自定义上传按钮 */
+.custom-upload {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px dashed #dcdfe6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: auto;
+}
+
+.custom-upload:hover {
+    border-color: #409eff;
+    background: #f5f7fa;
+}
+
+.custom-upload i {
+    font-size: 20px;
+    color: #909399;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.button-group button {
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+
+.confirm-btn {
+    background: #409eff;
+    color: white;
+    border: none;
+}
+
+
+
+.confirm-btn:hover {
+    background: #66b1ff;
+}
+
+
+/* 优化按钮组样式 */
+.edit-profile-dialog .button-group {
+    display: flex;
+    justify-content:space-evenly;
+    gap: 15px;  /* 减小按钮间距 */
+    margin: 30px 0 10px 0;  /* 减小顶部间距 */
+}
+
+.edit-profile-dialog .button-group button {
+    min-width: 68px;  /* 减小最小宽度 */
+    padding: 6px 16px;  /* 减小内边距 */
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;  /* 减小字体大小 */
+    transition: all 0.2s ease;
+    font-weight: 500;
+    width: 40%;
+    outline: none !important;  /* 移除点击时的轮廓 */
+}
+
+.edit-profile-dialog .button-group button:focus {
+    outline: none;  /* 移除焦点时的轮廓 */
+    box-shadow: none;  /* 移除焦点时的阴影 */
+}
+
+/* 取消按钮样式 */
+.edit-profile-dialog .cancel-btn {
+    background: #f5f5f5;
+    color: #606266;
+    height: 38px;  /* 固定高度 */
+    line-height: 1;  /* 确保文字垂直居中 */
+}
+
+.edit-profile-dialog .cancel-btn:focus {
+    border-color: #dcdfe6;  /* 保持边框颜色不变 */
+}
+
+/* 确认按钮样式 */
+.edit-profile-dialog .confirm-btn {
+    background: #409eff;
+    color: white;
+    border: none;
+    height: 38px;  /* 固定高度 */
+    line-height: 1;  /* 确保文字垂直居中 */
+}
+
+.edit-profile-dialog .confirm-btn:focus {
+    background: #409eff;  /* 保持背景色不变 */
+}
+
+/* 添加图片预览关样式 */
+.button-group .cancel-btn {
+  background: #f5f5f5;
+  color: #666;
+  height: 38px;
+}
+/* 添加图标样式 */
+.icon {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+}
+
+.icon svg {
+width: 1em;
+height: 1em;
+fill: currentColor;
+vertical-align: -0.125em;
+}
+
+/* 修改图标样式 */
+.icon {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+}
+
+/* 调整菜单按钮图标颜色为浅灰色 */
+.menu-btn .icon svg {
+width: 1.2em;
+height: 1.2em;
+fill: #666666; /* 改为更浅的颜色 */
+}
+
+/* 其他图标保持原样 */
+.icon svg {
+width: 1em;
+height: 1em;
+fill: currentColor;
+vertical-align: -0.125em;
+}
+
+/* 未解决按钮样式 */
+.unsolved-btn {
+margin-top: auto;
+padding: 4px 8px;
+font-size: 12px;
+color: #ca5d5d;
+border-radius: 4px;
+cursor: pointer;
+
+}
+
+
+
+/* 问题弹窗样式 */
+.problem-dialog {
+width: 400px;
+max-width: 90vw;
+padding: 20px;
+}
+
+.problem-dialog h3 {
+margin-bottom: 20px;
+text-align: center;
+color: #333;
+}
+
+.problem-dialog .input-group {
+margin-bottom: 15px;
+}
+
+.problem-dialog label {
+display: block;
+margin-bottom: 5px;
+color: #666;
+}
+
+.problem-dialog select,
+.problem-dialog textarea {
+width: 100%;
+padding: 8px;
+border: 1px solid #ddd;
+border-radius: 4px;
+font-size: 14px;
+}
+
+.problem-dialog textarea {
+resize: vertical;
+min-height: 80px;
+}
+
+.problem-dialog .button-group {
+display: flex;
+justify-content: flex-end;
+gap: 10px;
+margin-top: 20px;
+}
+
+/* 调消息容器样式以适应未解决按钮 */
+.message {
+position: relative;
+margin-bottom: 30px; /* 增加底部间距以容纳未解决按钮 */
+}
+
+
+
+/* 在现有样式后添加 */
+.at-panel {
+  position: fixed;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.at-user {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.at-user:hover {
+  background-color: #f5f5f5;
+}
+
+.at-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+/* 修改消息显示样式以支持@高亮 */
+.message .text {
+  white-space: pre-wrap;
+}
+
+.message .text span.at-mention {
+  color: #1890ff;
+  background: rgba(24,144,255,0.1);
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+/* 添加@面板样式 */
+.at-panel {
+    position: absolute;
+    bottom: calc(100% + 5px);  /* 位于输入框上方 */
+    left: 0;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    max-height: 200px;
+    width: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.at-item {
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: #333;
+    font-size: 13px;
+}
+
+.at-item:hover {
+    background-color: #f5f5f5;
+}
+
+.at-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* 确保输入框容器是相对定位 */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+/* 优化@提及的显示样式 */
+.message .text .at-mention {
+    color: #1890ff;
+    background: rgba(24,144,255,0.1);
+    padding: 0 2px;
+    border-radius: 2px;
+}
+
+/* 修改@消息的样式 */
+.message .text .at-mention {
+    color: #1890ff;
+    background: rgba(24,144,255,0.1);
+    padding: 0 2px;
+    border-radius: 2px;
+}
+
+/* 右侧消息中的@提及样式 */
+.message.right .bubble .at-mention {
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+}
+

@@ -1,0 +1,375 @@
+.conversations {
+  height: 100%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.user-card {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  background: #f7f7f7;
+  transition: all 0.25s ease;
+  position: relative;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.user-card:hover {
+  background: #f0f0f0;
+}
+
+.user-card:active {
+  background: #e8e8e8;
+  transform: scale(0.995);
+}
+
+.user-card.collapsed {
+  padding: 10px;
+  justify-content: center;
+}
+
+.user-card .avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 38px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: all 0.25s ease;
+}
+
+.user-card:hover .avatar {
+  border-color: #e0e0e0;
+  transform: scale(1.02);
+}
+
+.user-card .avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-card .user-info {
+  margin-left: 12px;
+}
+
+.user-card .username {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  text-rendering: optimizeLegibility;
+}
+
+.user-card .status {
+  font-size: 13px;
+  color: #999;
+  margin-top: 4px;
+}
+
+.conversation-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.conversation-item {
+  padding: 12px 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.conversation-item:hover {
+  background: #f5f5f5;
+  border-bottom-color: #eee;
+}
+
+.conversation-item:active {
+  background: #f0f0f0;
+  transform: scale(0.995);
+}
+
+.conversation-item.selected {
+  background: #e6f7ff;
+  border-left: 3px solid #1890ff;
+}
+
+.conversation-item.selected:hover {
+  background: #e6f7ff;
+}
+
+.item-content {
+  display: flex;
+  align-items: center;
+}
+
+.item-content .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.25s ease;
+}
+
+.conversation-item:hover .avatar {
+  transform: scale(1.05);
+}
+
+.item-content .avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.item-content .info {
+  flex: 1;
+  margin-left: 12px;
+  
+  overflow: hidden;
+}
+
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 15px;
+  color: #333;
+  font-weight: 500;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+  text-rendering: optimizeLegibility;
+}
+
+.time {
+  font-size: 12px;
+  color: #999;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.message-row {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.last-message {
+  font-size: 13px;
+  color: #666;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-rendering: optimizeLegibility;
+}
+
+.unread-badge {
+  min-width: 18px;
+  height: 18px;
+  padding: 0 6px;
+  background: #ff4d4f;
+  border-radius: 9px;
+  color: #fff;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+}
+
+.user-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  border: none;
+  background: transparent;
+  color: #666;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.logout-btn:hover {
+  color: #f56c6c;
+}
+
+.logout-btn.collapsed {
+  padding: 6px;
+}
+
+.logout-btn .logout-icon {
+  font-size: 16px;
+  margin-right: 4px;
+}
+
+.logout-btn.collapsed .logout-icon {
+  margin-right: 0;
+}
+
+.logout-btn span {
+  line-height: 1;
+}
+
+/* 添加收起图标样式 */
+.user-card .collapse-icon {
+  display: none;
+  position: absolute;
+  right: 15px;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #666;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+/* 移动端显示收起图标 */
+@media screen and (max-width: 640px) {
+  .user-card .collapse-icon {
+    display: flex;
+  }
+
+  .user-card .collapse-icon:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+}
+
+
+/* 修改移动端样式 */
+@media screen and (max-width: 640px) {
+  .conversations {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 320px;
+    height: 100vh;
+    z-index: 1000;
+    background: #fff;
+    /* will-change: transform; */
+    display: flex;
+    flex-direction: column;
+    transform: translate3d(0, 0, 0);
+    /* backface-visibility: hidden; */
+    perspective: 1000;
+  }
+
+  /* 展开状态 */
+  .conversations.show {
+    transform: translateX(0);
+  }
+
+  /* 保列表区域可以滚动且占满剩余空间 */
+  .conversation-list {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  /* 修改底部按钮容器样式 */
+  .conversation-box {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  .conversation-box .bottom {
+    margin-top: auto; /* 将底部推到最下方 */
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    background: #fff;
+    border-top: 1px solid #eee;
+    z-index: 10;
+  }
+
+} 
+
+/* 群聊头像样式 */
+.group-avatar {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #f5f5f5;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1px;
+    padding: 1px;
+}
+
+.group-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* 小屏幕适配 */
+@media screen and (max-width: 768px) {
+    .group-avatar {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* 添加搜索框样式 */
+.lsearch-box {
+    padding: 10px;
+}
+
+.lsearch-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.lsearch-input:focus {
+    border-color: #409eff;
+}
+
+.lsearch-input::placeholder {
+    color: #999;
+}
+
+.conversation-item.at-message {
+    background-color: rgba(255, 87, 34, 0.1);
+}
+
+.at-badge {
+    background-color: #ff5722;
+    color: white;
+    font-size: 12px;
+    padding: 2px 4px;
+    border-radius: 4px;
+    margin-left: 4px;
+}
+

@@ -1,0 +1,1 @@
+const o="PROD",c={PROD:{HOST:"http://120.24.187.119:8093",WS_HOST:"ws://kefu.coolsaas.com.cn:5200",UPLOAD_SERVER:"http://kefu.coolsaas.com.cn:10003"},DEV:{HOST:"http://192.168.1.167:8012",WS_HOST:"ws://kefu.coolsaas.com.cn:5200",UPLOAD_SERVER:"http://kefu.coolsaas.com.cn:10003"}},s=()=>c[o];export{s as g};
